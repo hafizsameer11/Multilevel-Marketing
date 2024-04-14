@@ -1,0 +1,39 @@
+**TOPLIST PLUGIN:**
+
+**General:**
+- Admin has to approve every server before its shown
+- Every Added / Edited Server has to be approved by an Admin
+- User can add multiple servers
+- Email should be sent if an Admin has to approve anything
+- A Wizard to add a server is might be a good idea (Step 1 = Server-Details | Step 2 = Server Description | Step 3 = Votifier)
+
+**Shortcode:**
+It´s the hearth of the System
+- Should be responsible
+- Look nice
+- Have Filters for Gamemodes / Server Language
+- Should be a WP Shortcode
+
+**Admin Panel:**
+- Serverlist to view, edit, filter, ban, approve Servers from User
+- Toplist Configuration:
+ - How often can be voted per User / IP / other Identifiers
+ - Reset interval (Amount of days - 0 if never)
+
+**User Panel:**
+- User Serverlist - Show all servers and offer Edit / Delete 
+- Site to add Server
+
+**Votifier:**
+- User should be able to add a webhook / callback on Vote so he can give their user credits to buy something in store
+
+**Server-Description:**
+A User should be able to add a post / description for his Server, which also has to be approved by the Admin.
+
+*Alternative*: Add a input field while adding server where a google docs link is required
+
+- A button to vote for a server shall be there
+- Infos of Server should be visible there
+
+**Future ideas:**
+- Auction System to bid for Placement

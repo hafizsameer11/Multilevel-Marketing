@@ -1,0 +1,312 @@
+@extends('dashboard.layouts.main')
+@section('main-section')
+    <div class="col-xl-10 col-lg-10 bg-white maiin">
+        <div class="m-content mx-2 mx-lg-3 px-2 px-lg-0 pb-4">
+            <header class="d-xl-none">
+                <div class="container-fluid container-lg g-0">
+                    <nav class="d-flex justify-content-between align-items-center" style="height: 84px;">
+                        <a href="#">
+                            <svg data-v-40a157b9="" data-v-159dae62="" data-src="https://cdn.nectaro.eu/assets/logo.svg"
+                                data-cache="2592000" data-loading="lazy" width="96" height="24" class="d-block"
+                                viewBox="0 0 112 28" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                data-id="svg-loader_250">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M3.20596 9.07543V6.93256H0V22.1012H3.20596V13.3127C3.22162 11.2023 4.938 9.49626 7.053 9.49626C9.17772 9.49626 10.9001 11.218 10.9002 13.3418H10.9011V22.1012H14.1071V12.4873L14.1067 12.4873C14.1067 9.18351 11.4274 6.50528 8.12224 6.50528C6.08579 6.50528 4.2869 7.52205 3.20596 9.07543Z"
+                                    fill="currentColor"></path>
+                                <g class="small" style="display: none;">
+                                    <path
+                                        d="M16.7 18.2556H18.8382C20.0181 18.2556 20.9746 19.2121 20.9746 20.392V20.392C20.9746 21.572 20.0177 22.5285 18.8378 22.5285V22.5285C17.6574 22.5285 16.7 21.5716 16.7 20.3912V18.2556Z"
+                                        fill="#8DEB00"></path>
+                                </g>
+                                <g class="large">
+                                    <path
+                                        d="M106.651 18.2556H108.789C109.969 18.2556 110.926 19.2121 110.926 20.392V20.392C110.926 21.572 109.969 22.5285 108.789 22.5285V22.5285C107.609 22.5285 106.651 21.5716 106.651 20.3912V18.2556Z"
+                                        fill="#8DEB00"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M97.7818 22.5285C102.208 22.5285 105.797 18.9416 105.797 14.5169C105.797 10.0922 102.208 6.50528 97.7818 6.50528C93.3553 6.50528 89.7669 10.0922 89.7669 14.5169C89.7669 18.9416 93.3553 22.5285 97.7818 22.5285ZM97.7819 19.5375C100.556 19.5375 102.805 17.2897 102.805 14.5169C102.805 11.7441 100.556 9.49626 97.7819 9.49626C95.0079 9.49626 92.7592 11.7441 92.7592 14.5169C92.7592 17.2897 95.0079 19.5375 97.7819 19.5375Z"
+                                        fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M86.2402 6.50528C87.3129 6.50528 88.3103 6.8277 89.1406 7.38089L88.3055 10.2564C87.6968 9.90864 86.9919 9.70992 86.2406 9.70992C83.9388 9.70992 82.0728 11.5751 82.0728 13.8759H82.072V22.1012H78.866V6.93256H82.072V8.57086C83.0285 7.31552 84.5397 6.50528 86.2402 6.50528Z"
+                                        fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M72.4549 20.4883C71.0936 21.757 69.2959 22.5285 67.3252 22.5285C63.0757 22.5285 59.6309 18.9416 59.6309 14.5169C59.6309 10.0922 63.0757 6.50528 67.3252 6.50528C69.2959 6.50528 71.0936 7.27673 72.4549 8.54544V6.93256H75.6608V22.1012H72.4549V20.4883ZM72.4547 14.5169C72.4547 17.2897 70.2538 19.5375 67.5389 19.5375C64.8239 19.5375 62.6231 17.2897 62.6231 14.5169C62.6231 11.7441 64.8239 9.49626 67.5389 9.49626C70.2538 9.49626 72.4547 11.7441 72.4547 14.5169Z"
+                                        fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M55.9975 1.16418H52.7916V6.93255H49.7996V9.7099H52.7916V22.1012H55.9975V9.7099H58.99V6.93255H55.9975V1.16418Z"
+                                        fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M48.3486 19.9142C46.8828 21.5205 44.7719 22.5285 42.4254 22.5285C37.9989 22.5285 34.4105 18.9416 34.4105 14.5169C34.4105 10.0922 37.9989 6.50528 42.4254 6.50528C44.7778 6.50528 46.8935 7.5183 48.3597 9.13174L46.2402 11.2504C45.319 10.1766 43.9519 9.49626 42.4259 9.49626C39.6519 9.49626 37.4032 11.7441 37.4032 14.5169C37.4032 17.2897 39.6519 19.5375 42.4259 19.5375C43.946 19.5375 45.3084 18.8624 46.2294 17.7959L48.3486 19.9142Z"
+                                        fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M32.3671 15.9055C32.4459 15.4545 32.487 14.9905 32.487 14.5169C32.487 10.0922 28.8987 6.50528 24.4721 6.50528C20.0456 6.50528 16.4572 10.0922 16.4572 14.5169C16.4572 18.9416 20.0456 22.5285 24.4721 22.5285C27.4222 22.5285 30 20.9353 31.3915 18.5627L28.7051 17.2201C27.8126 18.6137 26.2501 19.5375 24.4719 19.5375C22.1799 19.5375 20.2464 18.0029 19.6438 15.9055H29.2999L32.3671 15.9055ZM24.4719 9.49626C22.1799 9.49626 20.2464 11.0308 19.6438 13.1282H29.2999C28.6973 11.0308 26.7639 9.49626 24.4719 9.49626Z"
+                                        fill="currentColor"></path>
+                                </g>
+                            </svg>
+                        </a>
+                        <button class="ham-icon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                            aria-controls="offcanvasExample">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                                <rect width="22" height="2" x="1" y="11" fill="currentColor" rx="1" />
+                                <rect width="22" height="2" x="1" y="3" fill="currentColor" rx="1" />
+                                <rect width="22" height="2" x="1" y="19" fill="currentColor" rx="1" />
+                            </svg>
+                        </button>
+                    </nav>
+                </div>
+            </header>
+            <div class="top-contnt row mt-3 justify-content-between mb-3">
+                <div class="col-md-auto col-12">
+                    <div class="text-light">
+                        <a href="#" class="text-decoration-none text-light">DashBoard</a> /
+                    </div>
+                    <h3 class="text-dark fw-bold">Plans</h3>
+                </div>
+                <div class="col col-12 mt-4">
+                    <div class="banner-top bg-info text-white">
+                        <div class="banner-contnt d-flex flex-column flex-lg-row align-items-center">
+                            <div
+                                class="left-banr d-flex flex-column flex-lg-row align-items-center justify-content-start me-auto">
+
+                                <div class="bnr-txt text-white ms-2">
+                                    <h3 class="fs-5 fw-bold">Current Plane</h3>
+                                    <div class="fs-6 fw-semibold">{{ $currentPlan->name }}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="funds-boxes mt-4">
+                <div class="row no-gutters">
+                    <div class="col-lg-12 col-12 row gap-4 ">
+                        @foreach ($plans as $plan)
+                            <div class="col-lg-5  fund-card fund-sp">
+                                <div class="row p-0">
+                                    <div class="col-lg-7 col-12">
+                                        <div class="fs-6 text-secondary fw-semibold" style="text-transform: capitalize">
+                                            {{ $plan->name }}</div>
+
+                                    </div>
+
+                                    <div class="col col-12 mt-3 pt-2">
+                                        <div class="fud-crd d-flex justify-content-between align-items-center">
+                                            <div class="text-light fw-semibold"> Amount</div>
+                                            <div class="fw-bold">{{ $plan->amount }} $</div>
+                                        </div>
+                                        <div class="fud-crd mt-1 d-flex justify-content-between align-items-center">
+                                            <div class="text-light fw-semibold"> Earning Per video</div>
+                                            <div class="fw-bold">{{ $plan->earning_per_video }} $</div>
+                                        </div>
+                                        <div class="fud-crd mt-1 d-flex justify-content-between align-items-center">
+                                            <div class="text-light fw-semibold"> Total Videos Per Day</div>
+                                            <div class="fw-bold">{{ $plan->videos }}</div>
+                                        </div>
+
+                                        <div class="fud-crd mt-1 d-flex justify-content-between align-items-center">
+                                            <div class="text-light fw-semibold"> 1st Level Benefit</div>
+                                            <div class="fw-bold" style="text-transform: capitalize">{{ $plan->levebenefit }}</div>
+                                        </div>
+                                        <div class="fud-crd mt-1 d-flex justify-content-between align-items-center">
+                                            <div class="text-light fw-semibold">Weekly Report</div>
+                                            <div class="fw-bold" style="text-transform: capitalize">{{ $plan->weeklyreports }}</div>
+                                        </div>
+                                        <div class="fud-crd mt-1 d-flex justify-content-between align-items-center">
+                                            <div class="text-light fw-semibold">Duration</div>
+                                            @if ($plan->id==1)
+
+                                            <div class="fw-bold" style="text-transform: capitalize">{{ $plan->planexpiry }}</div>
+                                            @else
+                                            <div class="fw-bold" style="text-transform: capitalize">{{ $plan->planexpiry }} Days</div>
+                                            @endif
+
+                                        </div>
+                                        <hr>
+                                        <div class="fud-crd d-flex justify-content-between align-items-center">
+                                            <div
+                                                class="col-lg-12 bn-wrap order-1 order-lg-0 col-12 d-flex align-items-center justify-content-end">
+                                                @if ($plan->id==$user->userMeta->plan_id)
+                                                <span style="text-transform:capitalize">This plan is already activated</span>
+                                                @elseif ($plan->id==1)
+                                                    <span style="text-transform:capitalize">You can't activate this plan </span>
+                                                 @elseif ($plan->id<$user->userMeta->plan_id)
+                                                 <span style="text-transform:capitalize">You can't activate this plan </span>
+                                                @else
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <a href="#"
+                                                        data-id={{ $plan->id }}
+                                                        id="upgrade_plan"
+                                                        class="b-btn upgrade_plan bg-dark fw-semibold text-decoration-none txt-lght"
+                                                        style="font-size: 14px">Upgrade Plan</a>
+                                                </div>
+
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+
+    <div class="modal fade upgrad" id="upgrade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Upgrade Plan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="planIdInput" name="plan_id">
+                    <input type="hidden" id="userr" value="{{$user->id}}">
+
+                    <input type="hidden" name="userbalance" id="user_amount" value="{{$user->userMeta->user_balance}}">
+                    <h5 class="alert alert-success">Are you sure to upgrade <span id="planname"></span>  </h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="yess" class="btn btn-primary">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade fail" id="fail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Alert</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body">
+               <h5 class="alert alert-danger"> Your balance is low Please add  balance</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h5 class="alert alert-suuccess"> Your plan is upgraded</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+@section('additonal-script')
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.fail').hide();
+            $('.upgrade_plan').click(function() {
+                var planId = $(this).data('id');
+                $('#planIdInput').val(planId);
+                var userbalance=$( "#user_amount" ).val();
+                $.ajax({
+                    url: '/get-plan-amount',
+                    type: 'POST',
+                    data: {
+                        plan_id: planId
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        console.log(response)
+
+
+                        let planamount = response.amount;
+
+                        console.log(userbalance,planamount)
+                            let planname=response.planname;
+                            $('#planname').text(planname);
+
+                            if(userbalance>planamount){
+                                console.log("hello first")
+                                $("#upgrade").modal("show");
+
+
+
+                            }else{
+                                $("#fail").modal("show");
+                                console.log("hello")
+                            }
+
+
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle AJAX error
+                        console.error(xhr.responseText);
+                    }
+                });
+
+            });
+            $('#yess').click(function() {
+                var planId = $("#planIdInput").val();
+                $("#upgrade").modal("hide");
+                var userbalance=$( "#user_amount" ).val();
+                var user=$("#userr").val()
+                $.ajax({
+                    url: '/update-plan',
+                    type: 'POST',
+                    data: {
+                        plan_id: planId,
+                        userid:user
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        console.log(response)
+                        $("#exampleModal").modal("show")
+
+
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+
+            });
+        });
+    </script>
+@endsection

@@ -1,0 +1,71 @@
+<!-- HTML structure -->
+<div class="width-50">
+
+    <div class="quantity-container">
+        <div class="quantity-buttons">
+            <button type="button" id="decrement">-</button>
+        </div>
+        <input type="number" id="quantity" name="quantity" value="" placeholder="Participant" min="1">
+        <div class="quantity-buttons">
+            <button type="button" id="increment">+</button>
+        </div>
+    </div>
+
+</div>
+<!-- CSS styles -->
+<style>
+
+.quantity-container {
+    /* width: 5; */
+    margin-left: 10px;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+color:black;
+}
+
+.quantity-buttons {
+    display: flex;
+}
+input{
+    padding-left: 20px;
+    padding-right: 20px;
+color:black !important;
+}
+.quantity-buttons button {
+    background-color: transparent;
+    border: 2px solid black;
+    color: black;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 0;
+}
+
+.quantity-buttons button:hover {
+    background-color: black;
+    color: white !important;
+}
+</style>
+
+<!-- JavaScript functionality -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- JavaScript functionality using jQuery -->
+<script>
+$(document).ready(function() {
+    // Increment button click handler
+    $("#increment").click(function() {
+        $("#quantity").val(function(i, oldValue) {
+            return parseInt(oldValue) + 1;
+        });
+    });
+
+    // Decrement button click handler
+    $("#decrement").click(function() {
+        var currentValue = parseInt($("#quantity").val());
+        if (currentValue > parseInt($("#quantity").attr("min"))) {
+            $("#quantity").val(currentValue - 1);
+        }
+    });
+});
+</script>
