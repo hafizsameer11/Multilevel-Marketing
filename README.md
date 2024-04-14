@@ -64,3 +64,43 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# MLM and Video Watching Earning Platform
+
+This project is a multi-level marketing (MLM) platform integrated with a video watching earning module. It provides users with the opportunity to earn rewards by watching videos and participating in the MLM network.
+
+## Overview
+
+The MLM and video watching earning platform is designed to empower users to earn rewards through multiple channels. It combines the principles of MLM networking with video engagement to create a unique earning opportunity.
+
+## Features
+
+- **Multi-Level Marketing (MLM):** Users can build their network by referring others to join the platform, earning rewards for each referral and their subsequent activities.
+- **Video Watching Earning:** Users can earn rewards by watching videos provided on the platform. Each video watched contributes to their earnings.
+- **User Dashboard:** A personalized dashboard for each user to track their earnings, referrals, network activity, and other relevant metrics.
+- **Referral System:** A robust referral system that allows users to easily share their referral links and track the performance of their referrals.
+- **Reward Distribution:** Automated reward distribution system that ensures timely and accurate allocation of earnings to users' accounts.
+- **Admin Panel:** An admin panel to manage users, videos, rewards, network configurations, and other aspects of the platform.
+
+## Installation
+
+1. Clone the repository: `git clone https://github.com/your/repository.git`
+2. Install dependencies: `composer install && npm install`
+3. Set up the database and configure environment variables: `.env`
+4. Run migrations: `php artisan migrate`
+5. Seed initial data if required: `php artisan db:seed`
+6. Serve the application: `php artisan serve`
+
+## Usage
+
+1. **User Registration:** Users can sign up for an account on the platform.
+2. **Video Watching:** Users can browse and watch available videos to earn rewards.
+3. **Referral Networking:** Users can share their referral links with others and build their network.
+4. **Earning Dashboard:** Users can track their earnings, referrals, and network activity from their dashboard.
+5. **Admin Management:** Admins can manage users, videos, rewards, and other platform settings from the admin panel.
+
+
+
+
+---
+
+
