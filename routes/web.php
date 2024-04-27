@@ -36,14 +36,18 @@ Route::get('/contact-us', function () {
 Route::get('/blog-details', function () {
     return view('web.blog.index');
 })->name('blog');
-Route::get('/register/{id?}', [AuthController::class, 'registershow'])->name('register.show');
-Route::post('/register/request', [AuthController::class, 'register'])->name('register');
-Route::get('/login', [AuthController::class, 'loginshow'])->name('login.show');
-Route::post('login', [AuthController::class, 'login'])->name('login');
-Route::get('/login/google', [AuthController::class, 'redirectToGoogle'])->name('login.google');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/login/google/callback', [AuthController::class, 'handleGoogleCallback']);
+// Group for AuthController routes
+Route::group(['controller' => AuthController::class], function () {
+    Route::get('/register/{id?}', 'registershow')->name('register.show');
+    Route::post('/register/request', 'register')->name('register');
+    Route::get('/login', 'loginshow')->name('login.show');
+    Route::post('login', 'login')->name('login');
+    Route::get('/login/google', 'redirectToGoogle')->name('login.google');
+    Route::get('/login/google/callback', 'handleGoogleCallback');
+    Route::get('logout', 'logout')->name('logout');
+});
+
 Route::middleware(["auth"])->group(function () {
     Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/index', [DashboardController::class, 'index'])->name('dashboard');
@@ -52,56 +56,57 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
         Route::post('/transfer-fund', [TransactionController::class, 'transfer_funds'])->name('transfer.funds');
     });
+    // Group for PlanController routes
+    Route::group(['controller' => PlanController::class], function () {
+        Route::post('/get-plan-amount', 'plan_amount')->name('plan-amount');
+        Route::post('/update-plan', 'update_plan')->name('update-amount');
+    });
 
-    Route::post('/get-plan-amount', [PlanController::class, 'plan_amount'])->name('plan-amount');
-    Route::post('/update-plan', [PlanController::class, 'update_plan'])->name('update-amount');
-    Route::post('/check-username', [DashboardController::class, 'check_username'])->name('check-username');
-    Route::post('/check-amount', [DashboardController::class, 'check_amount'])->name('check-amount');
-    // for youtube videos routephp
-    Route::get('/vide-url', [YouTubeController::class, 'show_form'])->name('video.url');
-    Route::post('/vide-get', [YouTubeController::class, 'video_url'])->name('video.get');
-    Route::post('/video-getting-url', [YouTubeController::class, 'urldetector'])->name('urletector');
-    //video delete
-    Route::get('/video-delete/{id}', [YouTubeController::class, 'destroy'])->name('video.destroy');
-    //work routes
-    Route::get('video-work', [VideoWorkController::class, 'index'])->name('video.works');
-    Route::get('/previous-work', [VideoWorkController::class, 'previouswork'])->name('work.previous');
-    Route::get('/video-single/{id}', [VideoWorkController::class, 'single_video'])->name('video.single');
-    //complete video
-    Route::post('/completeVideo', [VideoWorkController::class, 'completedvideo'])->name('vieo.complete');
-    //for earning view routes
-    Route::get('/earnings', [UserEarningController::class, 'index'])->name('user.earnings');
-    Route::get('/team-earning', [UserEarningController::class, 'reffralearning'])->name('team.earnings');
-    Route::get('/video-earnings', [UserEarningController::class, 'video'])->name('user.videoearnings');
-    Route::get('/work-earning', [UserEarningController::class, 'allwork'])->name('work.earnings');
-    Route::get('/article-earnings', [UserEarningController::class, 'article'])->name('user.articleearnings');
+    // Group for DashboardController routes
+    Route::group(['controller' => DashboardController::class], function () {
+        Route::post('/check-username', 'check_username')->name('check-username');
+        Route::post('/check-amount', 'check_amount')->name('check-amount');
+    });
 
+    // Group for YouTubeController routes
+    Route::group(['controller' => YouTubeController::class], function () {
+        Route::get('/videos', 'index')->name('videos');
+        Route::get('/vide-url', 'show_form')->name('video.url');
+        Route::post('/vide-get', 'video_url')->name('video.get');
+        Route::get('/video/{id}', 'getVideoDetails')->name('single.video');
+        Route::post('/video-getting-url', 'urldetector')->name('urletector');
+        Route::get('/video-delete/{id}', 'destroy')->name('video.destroy');
+    });
 
-    Route::get('/request-withdraw', [WithdrawController::class, 'index'])->name('withdraw.form');
-    Route::post('/withdraw-request-submit', [WithdrawController::class, 'request'])->name('withdraw.request');
-    Route::get('/withdraw-requests', [WithdrawController::class, 'showrequest'])->name('withdraw.requests');
-    Route::post('/withdraw-request-action', [WithdrawController::class, 'action'])->name('withdraw.action');
-    Route::get('/bank-detail-form', [UserbankDetailController::class, 'index'])->name('bankdetail.form');
-    Route::post('/submit-bank-details', [UserbankDetailController::class, 'submit'])->name('bankdetail.submit');
+    // Group for VideoWorkController routes
+    Route::group(['controller' => VideoWorkController::class], function () {
+        Route::get('video-work', 'index')->name('video.works');
+        Route::get('/previous-work', 'previouswork')->name('work.previous');
+        Route::get('/video-single/{id}', 'single_video')->name('video.single');
+        Route::post('/completeVideo', 'completedvideo')->name('vieo.complete');
+    });
 
+    // Group for UserEarningController routes
+    Route::group(['controller' => UserEarningController::class], function () {
+        Route::get('/earnings', 'index')->name('user.earnings');
+        Route::get('/team-earning', 'reffralearning')->name('team.earnings');
+        Route::get('/video-earnings', 'video')->name('user.videoearnings');
+        Route::get('/work-earning', 'allwork')->name('work.earnings');
+        Route::get('/article-earnings', 'article')->name('user.articleearnings');
+    });
 
-    Route::get('/edit-bank-deetails/{id}', [UserbankDetailController::class, 'edit'])->name('bankdetails.user.edit');
-    Route::post('/update-bank-details', [UserbankDetailController::class, 'update'])->name('bankdetail.update');
-    Route::get('/bank-detail-form', [UserbankDetailController::class, 'index'])->name('bankdetail.form');
-    Route::get('/puser-profile', [UserProfileController::class, 'index'])->name('user.profile');
-    Route::post('/change-password', [UserProfileController::class, 'chnage_password'])->name('user.changepass');
-    Route::post('/change-bankdetails', [UserProfileController::class, 'update_bank_details'])->name('user.bankdetails');
-    Route::get('/show-bank-details/{id}', [UserProfileController::class, 'bank_details'])->name('user.bank.details');
-    Route::get('/statements-user', [TransactionController::class, 'userstatements'])->name('user.statements');
-    Route::get('/statements-admin', [TransactionController::class, 'admintransactions'])->name('admin.statements');
+    // Group for WithdrawController routes
+    Route::group(['controller' => WithdrawController::class], function () {
+        Route::get('/request-withdraw', 'index')->name('withdraw.form');
+        Route::post('/withdraw-request-submit', 'request')->name('withdraw.request');
+        Route::get('/withdraw-requests', 'showrequest')->name('withdraw.requests');
+        Route::post('/withdraw-request-action', 'action')->name('withdraw.action');
+        Route::get('/bank-detail-form', 'index')->name('bankdetail.form');
+        Route::post('/submit-bank-details', 'submit')->name('bankdetail.submit');
+        Route::get('/edit-bank-deetails/{id}', 'edit')->name('bankdetails.user.edit');
+        Route::post('/update-bank-details', 'update')->name('bankdetail.update');
+    });
 
-    //user details
-    Route::get('/user-profile-details/{id}', [UserProfileController::class, 'user_details'])->name('user.details');
-    Route::get('/all-users', [UserProfileController::class, 'allusers'])->name('all-users');
-    Route::post('/change-user-password', [AUthController::class, 'change_password_admin'])->name('change.user.pass');
-    //role assignment
-    Route::get('/role-assignment', [UserProfileController::class, 'role_assign'])->name('role.assign');
-    Route::post('/role-assignment-set', [UserProfileController::class, 'set_role'])->name('role.set');
+    // Add more groups for other controllers as needed...
+
 });
-Route::get('/videos', [YouTubeController::class, 'index'])->name('videos');
-Route::get('/video/{id}', [YouTubeController::class, 'getVideoDetails'])->name('single.video');
