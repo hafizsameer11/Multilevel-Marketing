@@ -52,6 +52,7 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
         Route::post('/transfer-fund', [TransactionController::class, 'transfer_funds'])->name('transfer.funds');
     });
+
     Route::post('/get-plan-amount', [PlanController::class, 'plan_amount'])->name('plan-amount');
     Route::post('/update-plan', [PlanController::class, 'update_plan'])->name('update-amount');
     Route::post('/check-username', [DashboardController::class, 'check_username'])->name('check-username');
@@ -95,12 +96,12 @@ Route::middleware(["auth"])->group(function () {
     Route::get('/statements-admin', [TransactionController::class, 'admintransactions'])->name('admin.statements');
 
     //user details
-    Route::get('/user-profile-details/{id}',[UserProfileController::class,'user_details'])->name('user.details');
-    Route::get('/all-users',[UserProfileController::class,'allusers'])->name('all-users');
-    Route::post('/change-user-password',[AUthController::class,'change_password_admin'])->name('change.user.pass');
+    Route::get('/user-profile-details/{id}', [UserProfileController::class, 'user_details'])->name('user.details');
+    Route::get('/all-users', [UserProfileController::class, 'allusers'])->name('all-users');
+    Route::post('/change-user-password', [AUthController::class, 'change_password_admin'])->name('change.user.pass');
     //role assignment
-    Route::get('/role-assignment',[UserProfileController::class,'role_assign'])->name('role.assign');
-    Route::post('/role-assignment-set',[UserProfileController::class,'set_role'])->name('role.set');
+    Route::get('/role-assignment', [UserProfileController::class, 'role_assign'])->name('role.assign');
+    Route::post('/role-assignment-set', [UserProfileController::class, 'set_role'])->name('role.set');
 });
 Route::get('/videos', [YouTubeController::class, 'index'])->name('videos');
 Route::get('/video/{id}', [YouTubeController::class, 'getVideoDetails'])->name('single.video');
