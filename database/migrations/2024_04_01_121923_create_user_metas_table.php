@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_metas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('plan_id')->references('id')->on('plans')->onDelete('cascade');
+            // $table->foreignId('plan_id')->references('id')->on('plans')->onDelete('cascade');
             $table->string('planstatus')->default('deactivate');
             $table->bigInteger('user_balance')->default(0);
             $table->date('plan_activated');
