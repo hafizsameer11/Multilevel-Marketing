@@ -5,7 +5,7 @@
             <div class="row g-0 align-items-center">
                 <div class="col-xl-2 col-lg-2 col-md-4 col-6">
                     <div class="tp-logo tp-logo-border">
-                        <a href="index.html">
+                        <a href="#">
                             <style>
                                 .tp-logo img {
                                     width: 200px !important;
@@ -75,7 +75,7 @@
                                     </form>
                                 </div>
                             </li>
-                      
+
                             <li>
                                 <a class="tp-menu-bar" href="javascript:void(0)"><i class="fas fa-bars"></i></a>
                             </li>
@@ -94,7 +94,7 @@
             </button>
         </div>
         <div class="tpoffcanvas__logo pt-50">
-            <a href="index.html">
+            <a href="#">
                 <img src="{{asset('web/assets/img/logo/logo-white.png')}}" alt="" />
             </a>
         </div>

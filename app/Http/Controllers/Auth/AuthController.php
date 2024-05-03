@@ -23,9 +23,9 @@ class AuthController extends Controller
     }
     public function logout()
     {
-        Auth::logout(); // Log out the authenticated user
+        Auth::logout();
 
-        return redirect('/login'); // Redirect to the login page or any other page after logout
+        return redirect('/login');
     }
     public function register(Request $request)
     {
@@ -35,7 +35,7 @@ class AuthController extends Controller
             'password' => [
                 'required',
                 'min:4'
-               ],
+            ],
             'reffral' => ['required', 'valid_referral_code'],
             'email' => 'required'
         ], [
@@ -44,16 +44,16 @@ class AuthController extends Controller
         ]);
 
 
-        $validatedData['address']=$request->address;
-        $validatedData['countries']=$request->countries;
-        $validatedData['cnic']=$request->cnic;
+        $validatedData['address'] = $request->address;
+        $validatedData['countries'] = $request->countries;
+        $validatedData['cnic'] = $request->cnic;
         // Hash the password
         $validatedData['password'] = bcrypt($validatedData['password']);
 
 
         $lastuser = User::latest()->first();
         if ($lastuser) {
-            $username = 'SE-' . $lastuser->id + 1;
+            $username = 'SE-' . $lastuser->id + 1 + 1458;
         } else {
 
             $username = 'SE-1';
@@ -66,7 +66,7 @@ class AuthController extends Controller
             $Usermeta = new UserMeta();
             $Usermeta->user_id = $user->id;
             $Usermeta->plan_id = 1;
-            $usernamee=$user->username;
+            $usernamee = $user->username;
             $Usermeta->save();
             $parentid = $request->reffral;
             $parent = User::where('reffernce_code', $parentid)->pluck('id');
@@ -78,7 +78,7 @@ class AuthController extends Controller
                 }
             }
 
-           return view('auth.login',compact('usernamee'));
+            return view('auth.login', compact('usernamee'));
         } else {
             return redirect()->back()->with(['error', 'Something went wrong please try again']);
         }
@@ -115,24 +115,23 @@ class AuthController extends Controller
 
         return redirect()->intended('dashboard');
     }
-    public function change_password_admin(Request $req){
-     if($req->password){
-        $user_id=$req->user_id;
-        $password=$req->password;
-        $user = User::find($user_id);
+    public function change_password_admin(Request $req)
+    {
+        if ($req->password) {
+            $user_id = $req->user_id;
+            $password = $req->password;
+            $user = User::find($user_id);
 
-        $user->password = bcrypt($password);
-       if($user->save()){
-        return response()->json(['success'=>'password changed successfully']);
-    }else{
+            $user->password = bcrypt($password);
+            if ($user->save()) {
+                return response()->json(['success' => 'password changed successfully']);
+            } else {
 
-        return response()->json(['error'=>'Something Went Wrong']);
-    }
+                return response()->json(['error' => 'Something Went Wrong']);
+            }
+        } else {
 
-}else{
-
-    return response()->json(['error'=>'Please Add password']);
-     }
-
+            return response()->json(['error' => 'Please Add password']);
+        }
     }
 }

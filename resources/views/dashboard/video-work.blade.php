@@ -68,6 +68,9 @@
                 <div class="table-filter mt-4">
 
                     <div class="table-responsive">
+                        @if (Auth::user()->status==1)
+
+
                         <table class="table fil-tb" style="vertical-align: middle;">
                             <thead>
                                 <tr>
@@ -97,6 +100,14 @@
                             </tbody>
 
                         </table>
+                        @else
+                      {{-- create a centerlized card --}}
+                      <div class="box alert alert-danger" style="width: 80%;margin:auto">
+                    <h2>Please Contact Admin Your Account Is Blocked</h2>
+                    </div>
+
+
+                        @endif
                     </div>
 
                 </div>

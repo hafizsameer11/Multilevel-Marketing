@@ -155,6 +155,29 @@ class YouTubeController extends Controller
 
         return $date;
     }
+    public function chnage_vide(Req $request)
+    {
+        $videourl = $request->url;
+        $videoi=$request->id;
+        $videoid = $this->extractVideoId($videourl);
+        if ($videoid != null) {
+            $video=$this->getVideoDetails($videoid);
+
+            $videodb=VideoModel::find($videoi);
+            $videodb->title=$video['title'];
+            $videodb->duration=$video['duration'];
+            $videodb->url=$video['url'];
+            $videodb->videoid=$videoid;
+            $videodb->original_duration=$video['original_duration'];
+            $videodb->publishedAt=$video['publishedAt'];
+
+            if($videodb->save()){
+              return redirect()->route('video.url')->with('success','Video Changed successfully');
+            }else{
+                return redirect()->route('video.url')->with('error','Failed to change video');
+            }
+        }
+    }
     public function video_url(Req $request)
     {
         $videourl = $request->videurl;

@@ -56,8 +56,8 @@ class UserProfileController extends Controller
     public function allusers(){
         $uid=Auth::id();
         $user = User::with(['usermeta', 'usermeta.plan'])->find($uid);
-        $users=User::where('role','user')->latest()->get();
-        $count=User::where('role','user')->count();
+        $users=User::where('role','!=','admin')->latest()->get();
+        $count=$users->count();
 
         return view('dashboard.all-users.all-users',compact('user','users','count'));
 
@@ -79,6 +79,43 @@ class UserProfileController extends Controller
 
             return response()->json(['error'=>'Something Went Wrong']);
         }
+
+    }
+    public function block($id){
+        $user=User::find($id);
+        $user->status=0;
+       if($user->save()){
+        return back()->with('success','This account has been blocked');
+
+
+        }else{
+            return back()->with('error','Failed to Block Account');
+        }
+
+    }
+    public function unblock($id){
+        $user=User::find($id);
+        $user->status=1;
+       if($user->save()){
+        return back()->with('success','This account has been blocked');
+
+
+        }else{
+            return back()->with('error','Failed to Block Account');
+        }
+
+    }
+    public function search(Request $request){
+        $searchTerm = $request->input('searchTerm');
+        $users = User::where('role','!=','admin')->where('username', 'like', "%$searchTerm%")
+                      ->orWhere('cnic', 'like', "%$searchTerm%")
+                      ->get();
+        $count=$users->count();
+        return response()->json([
+
+            'users' => $users,
+            'view' => view('partials.user_table', compact('users','count'))->render()
+        ]);
 
     }
 }

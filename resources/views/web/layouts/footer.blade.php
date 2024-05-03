@@ -9,85 +9,24 @@
                 <div class="col-xl-2 col-lg-2 col-md-3 col-6 mb-30">
                     <div class="tp-footer-widget z-index-3">
                         <div class="tp-footer-widget__title">
-                            <h4 class="tp-footer-title">Product</h4>
+                            <h4 class="tp-footer-title">Important Links</h4>
                         </div>
                         <div class="tp-footer-widget__list">
                             <ul>
                                 <li>
-                                    <a href="index.html"
-                                        >Landing Page</a
+                                    <a href="/"
+                                        >Home</a
                                     >
                                 </li>
-                                <li><a href="#">Popup Builder</a></li>
-                                <li><a href="#">Web-design</a></li>
-                                <li><a href="#">Content</a></li>
-                                <li><a href="#">Integrations</a></li>
+                                <li><a href="{{route('about')}}">About US</a></li>
+                                <li><a href="{{route('services')}}">Service</a></li>
+                                <li><a href="{{route('blog')}}">Blog</a></li>
+                                <li><a href="{{route('projects')}}">Projects</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-2 col-md-3 col-6 mb-30">
-                    <div
-                        class="tp-footer-widget footer-space-one z-index-3"
-                    >
-                        <div class="tp-footer-widget__title">
-                            <h4 class="tp-footer-title">Use Cases</h4>
-                        </div>
-                        <div class="tp-footer-widget__list">
-                            <ul>
-                                <li><a href="#">Web-designers</a></li>
-                                <li><a href="#">Marketers</a></li>
-                                <li><a href="#">Small Business</a></li>
-                                <li><a href="#">Website Builder</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-md-3 col-6 mb-30">
-                    <div
-                        class="tp-footer-widget footer-space-two z-index-3"
-                    >
-                        <div class="tp-footer-widget__title">
-                            <h4 class="tp-footer-title">Resources</h4>
-                        </div>
-                        <div class="tp-footer-widget__list">
-                            <ul>
-                                <li><a href="#">Academy</a></li>
-                                <li>
-                                    <a href="blog-details.html">Blog</a>
-                                </li>
-                                <li><a href="#">Themes</a></li>
-                                <li><a href="#">Hosting</a></li>
-                                <li><a href="#">Developers</a></li>
-                                <li>
-                                    <a href="contact.html">Support</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-md-3 col-6 mb-30">
-                    <div
-                        class="tp-footer-widget footer-space-three z-index-3"
-                    >
-                        <div class="tp-footer-widget__title">
-                            <h4 class="tp-footer-title">Product</h4>
-                        </div>
-                        <div class="tp-footer-widget__list">
-                            <ul>
-                                <li>
-                                    <a href="index.html"
-                                        >Landing Page</a
-                                    >
-                                </li>
-                                <li><a href="#">Popup Builder</a></li>
-                                <li><a href="#">Web-design</a></li>
-                                <li><a href="#">Content</a></li>
-                                <li><a href="#">Integrations</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-30">
                     <div class="tp-footer-widget z-index-3">
                         <div class="tp-footer-widget__title">
@@ -105,31 +44,42 @@
                                                 class="fal fa-map-marker-alt"
                                             ></i
                                         ></span>
-                                        Wisconsin Ave, Suite 700 Chevy
-                                        Chase, Maryland 20815</a
+                                       Lahore, Karachi, Islamabad</a
                                     >
                                 </li>
                                 <li>
-                                    <a href="mailto:support@figma">
+                                    <a href="mailto:info@solutionexperts.io">
                                         <span
                                             ><i
                                                 class="fal fa-envelope-open"
                                             ></i
                                         ></span>
-                                        support@figma.com</a
+                                        info@solutionexperts.io</a
                                     >
                                 </li>
                                 <li>
-                                    <a href="tel:778886664">
+                                    <a href="tel:3037530000">
                                         <span
                                             ><i
                                                 class="fal fa-phone-alt"
                                             ></i
                                         ></span>
-                                        088 (778 886 664)</a
+                                        0303 753 0000</a
                                     >
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-12 mb-30">
+                    <div class="tp-footer-widget z-index-3">
+                        <div class="tpoffcanvas__social">
+                            <div class="social-icon">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-facebook-square"></i></a>
+                                <a href="#"><i class="fab fa-dribbble"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -181,7 +131,7 @@
                         >
                             <p>
                                 ©Copy RIght @2024 All Rights Reserved -
-                                Solution Experts 
+                                Solution Experts
                             </p>
                         </div>
                     </div>

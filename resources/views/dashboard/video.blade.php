@@ -101,6 +101,7 @@
                                     <th scope="col">Title</th>
                                     <th scope="col">Url</th>
                                     <th scope="col">Duration</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,6 +112,7 @@
                                         <td class="contry">{{ $t->title }}</td>
                                         <td><a href="{{ $t->url }}">{{ $t->url }}</a></td>
                                         <td>{{ $t->duration }}</td>
+                                        <td><button data-id="{{$t->id}}" class="btn change btn-outline-success">Change</button></td>
 
                                         @php $i++; @endphp
                                     </tr>
@@ -120,6 +122,31 @@
                     </div>
 
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade changed" id="changed" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Change Video Url</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <form action="{{route('change.video')}}" method="POST">
+@csrf
+                    <div class="modal-body">
+
+                        <input type="hidden"  id="idd" name="id" value="">
+                        <input type="text" class="from-control" name="url" id="url">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" id="yess" class="btn btn-primary">Yes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -144,4 +171,18 @@
             });
         </script>
     @endif
+<script>
+         $(document).ready(function() {
+            // Function to toggle password visibility
+           $('.change').on('click',function(){
+            var id = $(this).data('id');
+            console.log(id);
+
+            $("#changed").modal("show");
+            $('#idd').val(id)
+             });
+            // Function to validate password match
+
+        });
+</script>
 @endsection

@@ -38,7 +38,7 @@
                         <div class="tp-case-thumb p-relative fix mb-20">
                             <img src="{{asset('web/assets/img/projects/1.png')}}" alt="">
                             <div class="case-icon">
-                                <a href="case-details.html"><i class="fas fa-arrow-alt-up"></i></a>
+                                <a href="#"><i class="fas fa-arrow-alt-up"></i></a>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                         <div class="tp-case-thumb p-relative fix mb-20">
                             <img src="{{asset('web/assets/img/projects/2.jpg')}}" alt="">
                             <div class="case-icon">
-                                <a href="case-details.html"><i class="fas fa-arrow-alt-up"></i></a>
+                                <a href="#"><i class="fas fa-arrow-alt-up"></i></a>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                         <div class="tp-case-thumb p-relative fix mb-20">
                             <img src="{{asset('web/assets/img/projects/3.png')}}" alt="">
                             <div class="case-icon">
-                                <a href="case-details.html"><i class="fas fa-arrow-alt-up"></i></a>
+                                <a href="#"><i class="fas fa-arrow-alt-up"></i></a>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         <div class="tp-case-thumb p-relative fix mb-20">
                             <img src="{{asset('web/assets/img/projects/4.jpg')}}" alt="">
                             <div class="case-icon">
-                                <a href="case-details.html"><i class="fas fa-arrow-alt-up"></i></a>
+                                <a href="#"><i class="fas fa-arrow-alt-up"></i></a>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="tp-case-button text-center mt-40">
-                            <a class="tp-btn" href="case-details.html">all Case studeis</a>
+                            <a class="tp-btn" href="#">all Case studeis</a>
                         </div>
                     </div>
                 </div>

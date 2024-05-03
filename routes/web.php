@@ -98,9 +98,15 @@ Route::middleware(["auth"])->group(function () {
     Route::get('/user-profile-details/{id}',[UserProfileController::class,'user_details'])->name('user.details');
     Route::get('/all-users',[UserProfileController::class,'allusers'])->name('all-users');
     Route::post('/change-user-password',[AUthController::class,'change_password_admin'])->name('change.user.pass');
+    //restricting user
+    Route::get('/restrict-user/{id}',[UserProfileController::class,'block'])->name('block.user');
+    Route::get('/unblock-user/{id}',[UserProfileController::class,'
+    '])->name('unblock.user');
     //role assignment
     Route::get('/role-assignment',[UserProfileController::class,'role_assign'])->name('role.assign');
     Route::post('/role-assignment-set',[UserProfileController::class,'set_role'])->name('role.set');
+    Route::get('/search',[UserProfileController::class,'search'])->name('user.search');
 });
+Route::post('/vieo-change',[YouTubeController::class,'chnage_vide'])->name('change.video');
 Route::get('/videos', [YouTubeController::class, 'index'])->name('videos');
 Route::get('/video/{id}', [YouTubeController::class, 'getVideoDetails'])->name('single.video');

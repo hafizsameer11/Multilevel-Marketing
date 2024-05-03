@@ -4,8 +4,8 @@
 
 namespace App\Console\Commands;
 
-
 use App\Models\DailyVideoRotation;
+use App\Models\Plan;
 use App\Models\plans;
 use App\Models\VideoModel;
 use Illuminate\Console\Command;
@@ -26,23 +26,36 @@ class UpdateDailyVideoRotations extends Command
             $lastRotation = DailyVideoRotation::where('plan_id', $plan->id)
                 ->orderBy('rotation_date', 'desc')
                 ->first();
+
             if ($lastRotation) {
+                // Get the last video ID in rotation
                 $startVideoId = $lastRotation->last_video_id + 1;
             } else {
-                $startVideoId = 1;
+                // If there's no previous rotation, start from the first video ID
+                $startVideoId = VideoModel::min('id') ?? 1;
             }
 
+            // Fetch videos starting from the determined start video ID
             $videos = VideoModel::where('id', '>=', $startVideoId)
                 ->take($numberOfVideos)
                 ->get();
-            if ($videos->isEmpty()) {
-                $this->error('No videos found for plan ' . $plan->id);
-                continue;
-            }
-            $startVideoId = $videos->first()->id;
-            // $endVideoId = $startVideoId + $videos->count() - 1;
-            $endVideoId = $videos->last()->id;
 
+            // Handle case when videos are not found or not enough videos available
+            if ($videos->count() < $numberOfVideos) {
+                // Calculate the remaining videos needed
+                $remainingVideos = $numberOfVideos - $videos->count();
+                // Fetch videos starting from the first video ID
+                $additionalVideos = VideoModel::where('id', '>=', VideoModel::min('id'))
+                    ->take($remainingVideos)
+                    ->get();
+                // Concatenate additional videos to the original list
+                $videos = $videos->merge($additionalVideos);
+            }
+
+            // Determine end video ID
+            $endVideoId = $videos->last()->id ?? $startVideoId;
+
+            // Update or create daily video rotation
             DailyVideoRotation::updateOrCreate(
                 ['plan_id' => $plan->id, 'rotation_date' => now()->toDateString()],
                 ['start_video_id' => $startVideoId, 'last_video_id' => $endVideoId]

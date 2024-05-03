@@ -63,11 +63,19 @@
                 </div>
 
             </div>
+            <form id="search-form">
+                @csrf
+                <div class="input-group mb-3">
+                    <input type="text" id="search-input" class="form-control" placeholder="Search by Username or CNIC">
+
+                </div>
+            </form>
+
 
             <div>
                 <div class="table-filter mt-4">
 
-                    <table class="table fil-tb" style="vertical-align: middle;">
+                    <table id="user-table" class="table fil-tb" style="vertical-align: middle;">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -75,6 +83,7 @@
                                 <th scope="col">Full Name</th>
                                 <th scope="col">CNIC</th>
                                 <th scope="col">Balance</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,6 +95,13 @@
                                     <td class="contry">{{ $t->name }} </td>
                                     <td class="contry">{{ $t->cnic }}</td>
                                     <td class="contry">{{ $t->userMeta->user_balance }} </td>
+                                    @if ($t->status == 0)
+                                        <td class="contry"><a href="{{ route('unblock.user', ['id' => $t->id]) }}"
+                                                class="btn btn-outline-success">Unblock the User</a> </td>
+                                    @else
+                                        <td class="contry"><a href="{{ route('block.user', ['id' => $t->id]) }}"
+                                                class="btn btn-outline-danger">Restrict That User</a> </td>
+                                    @endif
                                 </tr>
                                 @php
 
@@ -129,6 +145,25 @@
         });
     </script>
     <script>
+      $(document).ready(function() {
+    $('#search-input').on('input', function(event) {
+        var searchTerm = $(this).val();
+
+        $.ajax({
+            url: '{{ route("user.search") }}',
+            method: 'GET',
+            data: { searchTerm: searchTerm },
+            success: function(response) {
+                $('#user-table').html(response.view);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+});
+
+
         $(document).ready(function() {
             $("#enteremount").hide();
             $('#exist').hide();
