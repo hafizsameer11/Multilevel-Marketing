@@ -84,6 +84,8 @@
                                             <input type="number" name="amount" class="form-control" id="amount">
                                             <div id="enteremount" class="form-text alert alert-danger"
                                                 style="font-size:12px">Amount Can't be greater than the balance</div>
+                                            <div id="lessamount" class="form-text alert alert-danger"
+                                                style="font-size:12px">Withdraw Amount Should be greater than 5$</div>
                                         </div>
                                         <div class="mb-3 form-check">
 
@@ -115,7 +117,7 @@
                                 </tr>
                             </thead>
                             @php
-                                $i=1;
+                                $i = 1;
 
                             @endphp
                             <tbody>
@@ -176,10 +178,17 @@
             $("#enteremount").hide();
             $('#exist').hide();
             $('#doesnotexist').hide();
+            $("#lessamount").hide();
 
             $('#amount').on('input', function() {
                 var amount = $(this).val();
-                $.ajax({
+                if (amount < 5) {
+                    $("#lessamount").show();
+                    $("#submit").hide();
+                } else {
+                    $("#lessamount").hide();
+                    $("#submit").show();
+                    $.ajax({
                     url: '/check-amount',
                     method: 'POST',
                     data: {
@@ -205,6 +214,9 @@
                         console.log('Error occurred while checking amount');
                     }
                 });
+
+                }
+
             });
 
         });

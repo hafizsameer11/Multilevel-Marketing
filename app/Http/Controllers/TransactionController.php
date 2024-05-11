@@ -44,6 +44,9 @@ class TransactionController extends Controller
         $transactions=Transaction::with('sender','receiver')->where('receiver_id',Auth::id())->latest()->get();
         $id = Auth::id();
         $user = User::with(['usermeta', 'usermeta.plan'])->find($id);
+        // echo "<pre>";
+        // print_r($transaction);
+        // echo ""
         return view('dashboard.bankdetails.statements',compact('user','transactions')) ;
 
     }

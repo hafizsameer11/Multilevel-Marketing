@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOlution Experts</title>
+    <title>Solution Experts</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/fontawesome-all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/iofrm-style.css') }}">
@@ -41,11 +41,7 @@
 </style>
     <div class="form-body without-side">
         <div class="website-logo">
-            <a href="#">
-                <div class="logo">
-                    <img class="logo-size" src="{{ asset('auth/images/logo-light.svg') }}" alt="">
-                </div>
-            </a>
+
         </div>
         <div class="row">
             <div class="img-holder">
@@ -79,21 +75,31 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group ">
+                            <div class="form-group">
                                 <div class="input-group">
-                                    <input id="password" class="form-control" type="password" name="password"
-                                        placeholder="Password" required>
+                                    <input id="password" class="form-control" type="password" name="password" placeholder="Password" required>
                                     <div class="input-group-append">
-                                        <span class="input-group-text" id="toggle-password">
+                                        <span class="input-group-text toggle-password" data-target="password">
                                             <i class="fas fa-eye"></i>
                                         </span>
                                     </div>
                                 </div>
-
                                 @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="cpassword" class="form-control" type="password" name="cpassword" placeholder="Confirm Password" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text toggle-password" data-target="cpassword">
+                                            <i class="fas fa-eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <span id="password-match-error" class="text-danger d-none">Passwords must match.</span>
+                            </div>
+
                             <div class="form-group">
 
                                 <div class="input-group">
@@ -335,7 +341,7 @@
                             </div>
 
                             <div class="form-button">
-                                <button id="submit" type="submit" class="ibtn">Register</button>
+                                <button id="register-btn" type="submit" class="ibtn">Register</button>
                             </div>
 
                         </form>
@@ -356,17 +362,42 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const togglePassword = document.getElementById('toggle-password');
-            const password = document.getElementById('password');
+    document.addEventListener('DOMContentLoaded', function() {
+    const togglePasswordButtons = document.querySelectorAll('.toggle-password');
+    const passwordInput = document.getElementById('password');
+    const cpasswordInput = document.getElementById('cpassword');
+    const registerBtn = document.getElementById('register-btn');
+    const passwordMatchError = document.getElementById('password-match-error');
 
-            togglePassword.addEventListener('click', function() {
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
-                this.querySelector('i').classList.toggle('fa-eye');
-                this.querySelector('i').classList.toggle('fa-eye-slash');
-            });
+    function togglePassword(input) {
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+    }
+
+    togglePasswordButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const targetId = this.dataset.target;
+            const targetInput = document.getElementById(targetId);
+            togglePassword(targetInput);
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
         });
+    });
+
+    function checkPasswordMatch() {
+        if (passwordInput.value !== cpasswordInput.value) {
+            passwordMatchError.classList.remove('d-none');
+            registerBtn.classList.add('d-none')
+        } else {
+            passwordMatchError.classList.add('d-none');
+            registerBtn.classList.remove('d-none');
+        }
+    }
+
+    passwordInput.addEventListener('input', checkPasswordMatch);
+    cpasswordInput.addEventListener('input', checkPasswordMatch);
+});
+;
     </script>
 
 

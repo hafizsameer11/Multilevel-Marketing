@@ -34,6 +34,9 @@ class PlanController extends Controller
             'userid' => 'required|exists:users,id',
         ]);
         $userBalance = UserMeta::where('user_id', $userId)->value('user_balance');
+        $userplanebalance = UserMeta::with('plan')->get();
+        $userplanebalance = UserMeta::with('plan')->where('user_id', $userId)->value('plan_id');
+        $userplanebalance = plans::where('id', $userplanebalance)->value('amount');
         if ($userBalance === null) {
             return response()->json(["error" => "User balance not found"], 404);
         }
@@ -42,14 +45,15 @@ class PlanController extends Controller
             return response()->json(["error" => "Plan not found"], 404);
         }
         $planAmount = $plan->amount;
-        if ($userBalance < $planAmount) {
+        if ($userBalance + $userplanebalance < $planAmount) {
             return response()->json(["error" => "Insufficient balance"], 400);
         }
         try {
             DB::beginTransaction();
             $userMeta = UserMeta::where('user_id', $userId)->latest()->first();
             $userMeta->plan_id = $plan->id;
-            $userMeta->user_balance -= $planAmount;
+            $remainingamount = $planAmount - $userplanebalance;
+            $userMeta->user_balance -= $remainingamount;
             $userMeta->plan_activated = now()->toDateString();
             $userMeta->planstatus = "Activated";
             $userMeta->save();
@@ -58,17 +62,19 @@ class PlanController extends Controller
             if ($parentUser != null) {
                 $parentMeta = $parentUser->usermeta;
                 if ($parentMeta != null) {
-                    $earning = $planAmount * 0.15;
-                    $parentMeta->refferal_earning += $earning;
-                    $parentMeta->user_balance += $earning;
-                    $parentMeta->save();
-                    $transaction = new Transaction();
-                    $transaction->receiver_id = $parentUser->id;
-                    $transaction->sender_id = $userId;
-                    $transaction->status = "referral_earning";
-                    $transaction->nature = "Referral Earning to receiver";
-                    $transaction->amount = $earning;
-                    $transaction->save();
+                    if ($parentMeta->plan_id != 1) {
+                        $earning = $planAmount * 0.15;
+                        $parentMeta->refferal_earning += $earning;
+                        $parentMeta->user_balance += $earning;
+                        $parentMeta->save();
+                        $transaction = new Transaction();
+                        $transaction->receiver_id = $parentUser->id;
+                        $transaction->sender_id = $userId;
+                        $transaction->status = "referral_earning";
+                        $transaction->nature = "Referral Earning to receiver";
+                        $transaction->amount = $earning;
+                        $transaction->save();
+                    }
                 }
             }
 

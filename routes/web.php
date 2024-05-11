@@ -100,7 +100,7 @@ Route::middleware(["auth"])->group(function () {
     Route::post('/change-user-password',[AUthController::class,'change_password_admin'])->name('change.user.pass');
     //restricting user
     Route::get('/restrict-user/{id}',[UserProfileController::class,'block'])->name('block.user');
-    Route::get('/unblock-user/{id}',[UserProfileController::class,'
+    Route::get('/unblock-user/{id}',[UserProfileController::class,'unblock
     '])->name('unblock.user');
     //role assignment
     Route::get('/role-assignment',[UserProfileController::class,'role_assign'])->name('role.assign');

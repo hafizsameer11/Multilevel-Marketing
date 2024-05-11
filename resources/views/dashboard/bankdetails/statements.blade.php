@@ -87,15 +87,15 @@
                                         $i = 1;
                                     @endphp
                                     <td class="table-srt">{{ $i }}</td>
-
-                                    {{-- <td>{{ $t->sender->name }}</td> --}}
                                     @if ($t->status=='withdraw_transferred')
                                     <td>-  {{ $t->amount }} $</td>
                                     <td>Debit</td>
                                     @elseif ($t->status=='funds_added')
                                     <td>+  {{ $t->amount }} $</td>
                                     <td>Credit</td>
-
+                                    @elseif ($t->status='referral_earning')
+                                    <td>+  {{ $t->amount }} $</td>
+                                    <td>Credit</td>
                                     @endif
 
 
